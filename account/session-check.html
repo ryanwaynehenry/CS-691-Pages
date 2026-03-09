@@ -1,0 +1,51 @@
+<!doctype html>
+<!-- RESEARCH CLASSIFICATION: RISKY -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Session Check Required</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>Session Check</h1>
+      <p>Your active session appears unstable.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <p><span class="badge risky">RISKY</span></p>
+      <p class="warning"><strong>Urgent:</strong> Session expires in 01:45. Verify now to prevent temporary lockout.</p>
+      <p>Complete this quick check to keep your session active on this device.</p>
+
+      <form id="session-form">
+        <label for="participant-tag">Participant Tag</label>
+        <input id="participant-tag" name="participant-tag" type="text" placeholder="Example: P-143" required>
+
+        <label for="zone-code">Seating Zone Code</label>
+        <input id="zone-code" name="zone-code" type="text" placeholder="Example: B7" required>
+
+        <button type="submit">Verify Session Now</button>
+      </form>
+      <p class="subtle">Research simulation page with client-side-only behavior.</p>
+      <p><a href="../index.html">Back to scenario hub</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Study page: risky-looking session prompt simulation.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("session-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      alert("Demo only: no session check is performed and no data is transmitted.");
+    });
+  </script>
+</body>
+</html>

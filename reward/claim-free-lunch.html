@@ -1,0 +1,56 @@
+<!doctype html>
+<!-- RESEARCH CLASSIFICATION: RISKY -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Claim Free Lunch</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>Exclusive Lunch Reward</h1>
+      <p>Immediate action required to keep your spot in the queue.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <p><span class="badge risky">RISKY</span></p>
+      <p class="warning"><strong>Limited Window:</strong> Your reward hold expires in 06:00 minutes. Claim now to avoid forfeiture.</p>
+      <p>You were randomly selected for a complimentary meal upgrade. Confirm details below before the timer ends.</p>
+
+      <form id="reward-form">
+        <label for="display-name">Display Name</label>
+        <input id="display-name" name="display-name" type="text" placeholder="Enter any nickname" required>
+
+        <label for="pickup-zone">Pickup Zone</label>
+        <select id="pickup-zone" name="pickup-zone" required>
+          <option value="">Select a zone</option>
+          <option>North Counter</option>
+          <option>South Counter</option>
+          <option>Mobile Pickup Lane</option>
+        </select>
+
+        <button type="submit">Claim My Reward</button>
+      </form>
+      <p class="subtle">Research simulation page with client-side-only behavior.</p>
+      <p><a href="../index.html">Back to scenario hub</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Study page: risky-looking reward claim simulation.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("reward-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      alert("Demo only: no data sent. This is a safe user-study simulation.");
+    });
+  </script>
+</body>
+</html>

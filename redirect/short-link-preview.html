@@ -1,0 +1,48 @@
+<!doctype html>
+<!-- RESEARCH CLASSIFICATION: RISKY -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Short-Link Preview</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>Destination Preview</h1>
+      <p>This short link may lead to an unlisted endpoint.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <p><span class="badge risky">RISKY</span></p>
+      <p class="warning"><strong>Notice:</strong> The destination is currently masked. Continue only if you trust this source.</p>
+      <p><strong>Short code:</strong> `go.local/x7p`</p>
+      <p><strong>Resolved destination:</strong> <code id="resolved-target">[hidden]</code></p>
+
+      <button id="reveal-btn" type="button">Reveal Destination</button>
+      <button id="continue-btn" type="button">Continue to Destination</button>
+      <p class="subtle">Research simulation page with client-side-only behavior.</p>
+      <p><a href="../index.html">Back to scenario hub</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Study page: risky-looking redirect simulation.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("reveal-btn").addEventListener("click", function () {
+      document.getElementById("resolved-target").textContent = "/internal/preview/destination-simulation";
+    });
+
+    document.getElementById("continue-btn").addEventListener("click", function () {
+      alert("Demo only: no redirect occurs. This page is an inert simulation.");
+    });
+  </script>
+</body>
+</html>

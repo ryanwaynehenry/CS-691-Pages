@@ -1,0 +1,60 @@
+<!doctype html>
+<!-- RESEARCH CLASSIFICATION: RISKY -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QR Viewer Update Prompt</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>QR Viewer Security Update</h1>
+      <p>A critical compatibility patch is being requested.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <p><span class="badge risky">RISKY</span></p>
+      <p class="warning"><strong>Action Needed:</strong> Continue immediately to avoid reduced QR scan support.</p>
+      <p>This page requests a simulated update check. No actual software update is downloaded or installed.</p>
+
+      <form id="update-form">
+        <label for="device-mode">Device Mode</label>
+        <select id="device-mode" name="device-mode" required>
+          <option value="">Select mode</option>
+          <option>Standard Scan</option>
+          <option>Enhanced Scan</option>
+          <option>Legacy Compatibility</option>
+        </select>
+
+        <label for="consent-ack">Update Preference</label>
+        <select id="consent-ack" name="consent-ack" required>
+          <option value="">Choose one</option>
+          <option>Run Quick Check</option>
+          <option>Run Full Check</option>
+        </select>
+
+        <button type="submit">Start Update Check</button>
+      </form>
+      <p class="subtle">Research simulation page with client-side-only behavior.</p>
+      <p><a href="../index.html">Back to scenario hub</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Study page: risky-looking update prompt simulation.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("update-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      alert("Demo only: no update process exists and no files are downloaded.");
+    });
+  </script>
+</body>
+</html>
