@@ -4,65 +4,405 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Oak Street Bistro Menu</title>
+  <title>Oak Street Bistro — Menu</title>
   <link rel="stylesheet" href="../styles.css">
+  <style>
+    /* Cozy bistro overrides */
+    :root {
+      --bistro-warm:   #fdf6ee;
+      --bistro-tan:    #f3e8d5;
+      --bistro-brown:  #6b4226;
+      --bistro-gold:   #c8892a;
+      --bistro-border: #e2cdb0;
+      --bistro-muted:  #7a6248;
+    }
+
+    body {
+      background: linear-gradient(180deg, #fdf6ee 0%, #f7ede0 100%);
+      color: #2c1f10;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .site-header {
+      background: var(--bistro-brown);
+      border-bottom: 3px solid var(--bistro-gold);
+      padding: 2.5rem 0 1.75rem;
+    }
+
+    .site-header h1 {
+      color: #fff;
+      font-size: 2.2rem;
+      letter-spacing: 0.04em;
+    }
+
+    .site-header p {
+      color: #e8d5b8;
+      font-style: italic;
+    }
+
+    /* Hero tagline */
+    .hero {
+      background: var(--bistro-tan);
+      border: 1px solid var(--bistro-border);
+      border-radius: 12px;
+      padding: 1.6rem 1.4rem;
+      margin: 1.4rem 0;
+      text-align: center;
+    }
+
+    .hero h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.4rem;
+      color: var(--bistro-brown);
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--bistro-muted);
+      font-style: italic;
+    }
+
+    /* Hours notice */
+    .hours-notice {
+      background: #fff8f0;
+      border-left: 4px solid var(--bistro-gold);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+      color: var(--bistro-muted);
+    }
+
+    /* Section headings */
+    .menu-section h2 {
+      font-size: 1.2rem;
+      color: var(--bistro-brown);
+      border-bottom: 2px solid var(--bistro-border);
+      padding-bottom: 0.4rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* Menu item rows */
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px dashed var(--bistro-border);
+    }
+
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+
+    .menu-item-info {
+      flex: 1;
+    }
+
+    .menu-item-name {
+      font-weight: 700;
+      color: #2c1f10;
+    }
+
+    .menu-item-desc {
+      font-size: 0.88rem;
+      color: var(--bistro-muted);
+      font-style: italic;
+      margin-top: 0.15rem;
+    }
+
+    .menu-item-price {
+      font-weight: 700;
+      color: var(--bistro-brown);
+      white-space: nowrap;
+    }
+
+    /* Testimonials */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .testimonial {
+      background: #fff8f0;
+      border: 1px solid var(--bistro-border);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+    }
+
+    .testimonial blockquote {
+      margin: 0 0 0.6rem;
+      font-style: italic;
+      color: #2c1f10;
+      line-height: 1.55;
+    }
+
+    .testimonial cite {
+      font-size: 0.85rem;
+      color: var(--bistro-muted);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .stars {
+      color: var(--bistro-gold);
+      letter-spacing: 0.05em;
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .card {
+      background: #fffaf4;
+      border-color: var(--bistro-border);
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--bistro-border);
+      padding-top: 1rem;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
+
   <header class="site-header">
     <div class="container">
       <h1>Oak Street Bistro</h1>
-      <p>Daily menu and service hours.</p>
+      <p>Handcrafted meals &bull; Warm atmosphere &bull; Since 2009</p>
     </div>
   </header>
 
   <main class="container">
-    <section class="card">
-      <p><span class="badge benign">BENIGN</span></p>
-      <p class="notice"><strong>Hours:</strong> Mon-Fri 11:00 AM-9:00 PM, Sat-Sun 10:00 AM-10:00 PM</p>
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Description</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Garden Citrus Salad</td>
-            <td>Mixed greens, orange segments, toasted seeds, lemon vinaigrette</td>
-            <td>$9</td>
-          </tr>
-          <tr>
-            <td>Roasted Tomato Pasta</td>
-            <td>Penne, basil, roasted tomato sauce, parmesan</td>
-            <td>$14</td>
-          </tr>
-          <tr>
-            <td>Seared Herb Chicken</td>
-            <td>Grilled vegetables, wild rice, herb butter</td>
-            <td>$18</td>
-          </tr>
-          <tr>
-            <td>Berry Oat Crumble</td>
-            <td>Warm berry filling with oat topping and vanilla cream</td>
-            <td>$7</td>
-          </tr>
-        </tbody>
-      </table>
+
+    <!-- Research badge -->
+    <p style="margin:0.8rem 0 0;"><span class="badge benign">BENIGN</span></p>
+
+    <!-- Hero -->
+    <div class="hero">
+      <h2>Welcome to Oak Street Bistro</h2>
+      <p>A quiet corner in the city where every dish is made with care.<br>
+         Settle in, take your time, and enjoy something truly homemade.</p>
+    </div>
+
+    <!-- Hours -->
+    <div class="hours-notice">
+      <strong>Hours:</strong>&ensp;
+      Mon – Fri &nbsp;11:00 AM – 9:00 PM &nbsp;&bull;&nbsp;
+      Sat – Sun &nbsp;10:00 AM – 10:00 PM
+    </div>
+
+    <!-- Starters -->
+    <section class="card menu-section">
+      <h2>Starters</h2>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Warm Rosemary Bread</div>
+          <div class="menu-item-desc">House-baked loaf, whipped herb butter, sea salt flakes</div>
+        </div>
+        <div class="menu-item-price">$6</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Garden Citrus Salad</div>
+          <div class="menu-item-desc">Mixed greens, orange segments, toasted pepitas, lemon vinaigrette</div>
+        </div>
+        <div class="menu-item-price">$9</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Roasted Beet &amp; Walnut Plate</div>
+          <div class="menu-item-desc">Golden and red beets, candied walnuts, goat cheese crumble, balsamic glaze</div>
+        </div>
+        <div class="menu-item-price">$11</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Butternut Squash Bisque</div>
+          <div class="menu-item-desc">Slow-roasted squash, cream, toasted sage, a swirl of brown butter</div>
+        </div>
+        <div class="menu-item-price">$8</div>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>Quick Task</h2>
-      <p>Use this page to decide on an entree before ordering at the counter.</p>
-      <p><a href="../index.html">Back to scenario hub</a></p>
+    <!-- Mains -->
+    <section class="card menu-section">
+      <h2>Main Courses</h2>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Seared Herb Chicken</div>
+          <div class="menu-item-desc">Pan-seared thigh, grilled seasonal vegetables, wild rice, herb butter pan sauce</div>
+        </div>
+        <div class="menu-item-price">$18</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Roasted Tomato Pasta</div>
+          <div class="menu-item-desc">Penne, slow-roasted cherry tomatoes, fresh basil, shaved parmesan</div>
+        </div>
+        <div class="menu-item-price">$14</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Braised Short Rib</div>
+          <div class="menu-item-desc">Slow-braised beef, creamy mashed potato, roasted carrots, red-wine jus</div>
+        </div>
+        <div class="menu-item-price">$24</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Mushroom &amp; Lentil Wellington</div>
+          <div class="menu-item-desc">Flaky puff pastry, savory lentil-mushroom filling, roasted garlic aioli (v)</div>
+        </div>
+        <div class="menu-item-price">$16</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Pan-Seared Salmon</div>
+          <div class="menu-item-desc">Atlantic salmon, lemon-caper cream sauce, wilted spinach, fingerling potatoes</div>
+        </div>
+        <div class="menu-item-price">$22</div>
+      </div>
     </section>
+
+    <!-- Desserts -->
+    <section class="card menu-section">
+      <h2>Desserts</h2>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Berry Oat Crumble</div>
+          <div class="menu-item-desc">Warm mixed-berry filling, golden oat topping, vanilla cream</div>
+        </div>
+        <div class="menu-item-price">$7</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Salted Caramel Pot de Crème</div>
+          <div class="menu-item-desc">Silky baked custard, house caramel, fleur de sel</div>
+        </div>
+        <div class="menu-item-price">$8</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Dark Chocolate Fondant</div>
+          <div class="menu-item-desc">Warm chocolate cake, molten center, crème fraîche</div>
+        </div>
+        <div class="menu-item-price">$9</div>
+      </div>
+    </section>
+
+    <!-- Drinks -->
+    <section class="card menu-section">
+      <h2>Beverages</h2>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">House Drip Coffee</div>
+          <div class="menu-item-desc">Single-origin light roast, locally sourced</div>
+        </div>
+        <div class="menu-item-price">$3</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Honey Lavender Latte</div>
+          <div class="menu-item-desc">Espresso, steamed oat milk, house lavender syrup</div>
+        </div>
+        <div class="menu-item-price">$5</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Sparkling Lemonade</div>
+          <div class="menu-item-desc">Fresh-squeezed lemon, cane sugar, sparkling water</div>
+        </div>
+        <div class="menu-item-price">$4</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Seasonal Herbal Tea</div>
+          <div class="menu-item-desc">Rotating selection of loose-leaf blends, honey on request</div>
+        </div>
+        <div class="menu-item-price">$3</div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="card">
+      <h2 style="color:var(--bistro-brown);border-bottom:2px solid var(--bistro-border);padding-bottom:0.4rem;letter-spacing:0.06em;text-transform:uppercase;">What Our Guests Are Saying</h2>
+      <div class="testimonial-grid">
+
+        <div class="testimonial">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"The braised short rib was absolutely melt-in-your-mouth. I come back at least twice a month and it never disappoints."</blockquote>
+          <cite>— Margaret T., regular guest</cite>
+        </div>
+
+        <div class="testimonial">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"Best pasta I've had outside of my grandmother's kitchen. The roasted tomatoes make all the difference — so much depth of flavor."</blockquote>
+          <cite>— Daniel R.</cite>
+        </div>
+
+        <div class="testimonial">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"I brought my whole family for my birthday dinner. The warmth of this place — the lighting, the staff, the food — made the evening perfect."</blockquote>
+          <cite>— Priya S.</cite>
+        </div>
+
+        <div class="testimonial">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+          <blockquote>"The mushroom Wellington converted my skeptical husband into a vegetarian-option believer. That pastry! Ordered dessert just to keep sitting here."</blockquote>
+          <cite>— Claire &amp; Tom W.</cite>
+        </div>
+
+        <div class="testimonial">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"Honey lavender latte and the berry crumble on a rainy afternoon — this place is basically a hug in restaurant form."</blockquote>
+          <cite>— Jordan K.</cite>
+        </div>
+
+        <div class="testimonial">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"The salmon was cooked to perfection — crispy skin, flaky inside. The lemon-caper sauce was bright and balanced. I'll be back for sure."</blockquote>
+          <cite>— Amara O.</cite>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Back link -->
+    <p style="margin:0.5rem 0 1.5rem;"><a href="../index.html">&larr; Back to scenario hub</a></p>
+
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>Study page: benign restaurant information.</p>
+      <p>Study page: benign restaurant information. &nbsp;|&nbsp; No external integrations.</p>
     </div>
   </footer>
+
 </body>
 </html>
