@@ -4,53 +4,319 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Claim Free Lunch</title>
+  <title>CONGRADULATIONS!! Free Lunch Reward Claim!!</title>
   <link rel="stylesheet" href="../styles.css">
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #e0e0e0;
+      font-family: "Courier New", Courier, monospace;
+    }
+
+    .site-header {
+      background: #1a0000;
+      border-bottom: 3px solid #cc0000;
+      padding: 1.5rem 0;
+    }
+
+    .site-header h1 {
+      color: #ff2222;
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .site-header p {
+      color: #ff8888;
+    }
+
+    /* Blinking timer */
+    .timer-box {
+      background: #1a0000;
+      border: 2px solid #cc0000;
+      border-radius: 8px;
+      padding: 0.9rem 1.1rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .timer-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #ff0000;
+      flex-shrink: 0;
+      animation: blink 0.7s step-start infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    .timer-label {
+      color: #ff4444;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .timer-value {
+      color: #ff0000;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      animation: blink 0.7s step-start infinite;
+    }
+
+    /* Main card */
+    .card {
+      background: #111111;
+      border: 1px solid #333;
+      color: #cccccc;
+    }
+
+    /* Glitch header text */
+    .glitch-heading {
+      color: #ff3333;
+      font-size: 1.25rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 0 0 0.6rem;
+    }
+
+    /* Red flag warning banners */
+    .sus-banner {
+      background: #1f0000;
+      border: 1px solid #880000;
+      border-left: 4px solid #ff0000;
+      border-radius: 4px;
+      padding: 0.6rem 0.8rem;
+      margin: 0.7rem 0;
+      font-size: 0.9rem;
+      color: #ffaaaa;
+    }
+
+    .sus-banner strong {
+      color: #ff4444;
+    }
+
+    /* Vague body text */
+    .vague-text {
+      color: #888;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0.8rem 0;
+    }
+
+    /* Form overrides */
+    form {
+      background: #0d0d0d;
+      border: 1px solid #440000;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .form-heading {
+      color: #ff5555;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 0 0 0.8rem;
+    }
+
+    label {
+      color: #bbbbbb;
+      font-size: 0.85rem;
+    }
+
+    input, select {
+      background: #1a1a1a;
+      border: 1px solid #555;
+      color: #e0e0e0;
+      font-family: "Courier New", Courier, monospace;
+    }
+
+    input::placeholder {
+      color: #555;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      margin-top: 1.1rem;
+      background: #cc0000;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.75rem;
+      border-radius: 6px;
+      animation: pulse-btn 1.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-btn {
+      0%, 100% { background: #cc0000; box-shadow: 0 0 0 0 rgba(204,0,0,0.5); }
+      50%       { background: #ff1111; box-shadow: 0 0 0 8px rgba(204,0,0,0); }
+    }
+
+    button[type="submit"]:hover {
+      background: #ff0000;
+    }
+
+    /* Sketchy trust badges */
+    .fake-trust {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin: 0.9rem 0 0.4rem;
+    }
+
+    .fake-trust span {
+      background: #1a1a00;
+      border: 1px solid #555500;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      color: #aaaa44;
+      padding: 0.2rem 0.45rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* Countdown expired state */
+    .expired-msg {
+      display: none;
+      color: #ff4444;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      animation: blink 1s step-start infinite;
+    }
+
+    .site-footer {
+      border-top: 1px solid #222;
+      color: #444;
+    }
+
+    .site-footer a {
+      color: #555;
+    }
+  </style>
 </head>
 <body>
+
   <header class="site-header">
     <div class="container">
-      <h1>Exclusive Lunch Reward</h1>
-      <p>Immediate action required to keep your spot in the queue.</p>
+      <h1>!! CONGRATULATIONS WINNER !!</h1>
+      <p>You have been selectd for a specail reward offer. Act immediatley.</p>
     </div>
   </header>
 
   <main class="container">
+    <p style="margin:0.8rem 0 0;"><span class="badge risky">RISKY</span></p>
+
+    <!-- Blinking timer -->
+    <div class="timer-box" style="margin-top:0.9rem;">
+      <div class="timer-dot"></div>
+      <div>
+        <div class="timer-label">!! OFFER EXPIRES IN !!</div>
+        <div class="timer-value" id="timer-display">06:00</div>
+      </div>
+    </div>
+
     <section class="card">
-      <p><span class="badge risky">RISKY</span></p>
-      <p class="warning"><strong>Limited Window:</strong> Your reward hold expires in 06:00 minutes. Claim now to avoid forfeiture.</p>
-      <p>You were randomly selected for a complimentary meal upgrade. Confirm details below before the timer ends.</p>
 
-      <form id="reward-form">
-        <label for="display-name">Display Name</label>
-        <input id="display-name" name="display-name" type="text" placeholder="Enter any nickname" required>
+      <div class="glitch-heading">Free Lunch Reward — Claim Now</div>
 
-        <label for="pickup-zone">Pickup Zone</label>
-        <select id="pickup-zone" name="pickup-zone" required>
-          <option value="">Select a zone</option>
-          <option>North Counter</option>
-          <option>South Counter</option>
-          <option>Mobile Pickup Lane</option>
-        </select>
+      <div class="sus-banner">
+        <strong>URGENT:</strong> Your device has been registerd for a complimentry meal offer through our partnar network. This offer is <strong>non-transferable</strong> and will void if not claimed in time.
+      </div>
 
-        <button type="submit">Claim My Reward</button>
+      <p class="vague-text">
+        As part of an exclusive promtion, you have qualifed for a FREE lunch valued at up to <strong style="color:#ffaa00;">$??</strong> at a participatig location near you. To recieve your reward, you must verifiy your identity bellow. Failure to comply will result in permenant forfieture of this offer.
+      </p>
+
+      <div class="sus-banner">
+        <strong>WARNING:</strong> Do not close this page. Do not refresh. Your session token will expire and you will loose your place in the reward queue.
+      </div>
+
+      <p class="vague-text" style="font-size:0.8rem;color:#555;">
+        Offer valid at select unspecifed locatons. Terms and condtions apply. By submitng this form you agree to our <span style="color:#333;text-decoration:underline;cursor:pointer;">Privacy Polcy</span> and <span style="color:#333;text-decoration:underline;cursor:pointer;">Data Sharing Agreemnt</span>. Your informaton may be shared with thrid-party partnarships.
+      </p>
+
+      <!-- Form -->
+      <form id="reward-form" autocomplete="off">
+        <div class="form-heading">Enter Your Info to Claim Reward</div>
+
+        <label for="full-name">Full Legal Name *</label>
+        <input id="full-name" name="full-name" type="text" placeholder="First and Last name" required>
+
+        <label for="phone-num">Phone Number *</label>
+        <input id="phone-num" name="phone-num" type="tel" placeholder="Your personal phone number" required>
+
+        <label for="home-address">Home Address *</label>
+        <input id="home-address" name="home-address" type="text" placeholder="Street address, city, ZIP" required>
+
+        <label for="date-of-birth">Date of Birth *</label>
+        <input id="date-of-birth" name="date-of-birth" type="text" placeholder="MM/DD/YYYY" required>
+
+        <label for="reward-code">Reward Code (check your texts)</label>
+        <input id="reward-code" name="reward-code" type="text" placeholder="Enter code sent to your device">
+
+        <button type="submit">CLAIM MY FREE LUNCH NOW</button>
+        <div class="expired-msg" id="expired-msg">!! TIMER EXPIRED — RESUBMIT IMMEDIATELY !!</div>
       </form>
-      <p class="subtle">Research simulation page with client-side-only behavior.</p>
-      <p><a href="../index.html">Back to scenario hub</a></p>
+
+      <!-- Fake trust badges -->
+      <div class="fake-trust">
+        <span>&#10003; Verified Secure</span>
+        <span>&#10003; SSL Encrypted</span>
+        <span>&#10003; Trusted Partner</span>
+        <span>&#10003; No Spam</span>
+      </div>
+
+      <p style="margin-top:1.2rem;"><a href="../index.html">Back to scenario hub</a></p>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>Study page: risky-looking reward claim simulation.</p>
+      <p>Study page: risky-looking reward claim simulation. No data is transmitted.</p>
     </div>
   </footer>
 
   <script>
+    // Countdown timer
+    var seconds = 6 * 60;
+    var display = document.getElementById("timer-display");
+    var expiredMsg = document.getElementById("expired-msg");
+
+    var interval = setInterval(function () {
+      seconds--;
+      if (seconds <= 0) {
+        seconds = 0;
+        clearInterval(interval);
+        display.textContent = "00:00";
+        expiredMsg.style.display = "block";
+      } else {
+        var m = Math.floor(seconds / 60);
+        var s = seconds % 60;
+        display.textContent =
+          (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+      }
+    }, 1000);
+
+    // Form intercept — client-side only, no data sent
     document.getElementById("reward-form").addEventListener("submit", function (event) {
       event.preventDefault();
       alert("Demo only: no data sent. This is a safe user-study simulation.");
     });
   </script>
+
 </body>
 </html>
