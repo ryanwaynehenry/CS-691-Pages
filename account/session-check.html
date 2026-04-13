@@ -4,48 +4,318 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Session Check Required</title>
+  <title>Account Security Alert — Action Required</title>
   <link rel="stylesheet" href="../styles.css">
+  <style>
+    body {
+      background: #0e1520;
+      color: #d0d8e8;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .site-header {
+      background: #0a1020;
+      border-bottom: 2px solid #cc2020;
+      padding: 1.4rem 0;
+    }
+
+    .site-header h1 {
+      color: #e0e8ff;
+      font-size: 1.3rem;
+      letter-spacing: 0.02em;
+    }
+
+    .site-header p {
+      color: #6070a0;
+      font-size: 0.88rem;
+    }
+
+    /* Alert banner */
+    .alert-banner {
+      background: #1a0808;
+      border: 1px solid #882222;
+      border-left: 4px solid #dd0000;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+    }
+
+    .alert-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+
+    .alert-heading {
+      color: #ff4444;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin: 0 0 0.3rem;
+    }
+
+    .alert-body {
+      color: #cc8888;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* Activity table */
+    .activity-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.8rem 0;
+    }
+
+    .activity-table th {
+      background: #141e2e;
+      color: #7888aa;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.5rem 0.6rem;
+      border: 1px solid #252f40;
+    }
+
+    .activity-table td {
+      padding: 0.55rem 0.6rem;
+      border: 1px solid #252f40;
+      font-size: 0.87rem;
+      color: #b8c4d8;
+    }
+
+    .activity-table tr.flagged td {
+      background: #1a0c0c;
+      color: #ff9090;
+    }
+
+    .status-ok   { color: #44aa66; font-weight: 600; }
+    .status-flag { color: #ff4444; font-weight: 700; }
+
+    /* Countdown */
+    .countdown-strip {
+      background: #1a0808;
+      border: 1px solid #882222;
+      border-radius: 6px;
+      padding: 0.65rem 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+      font-size: 0.88rem;
+      color: #ff8888;
+      flex-wrap: wrap;
+    }
+
+    .cd-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ff2222;
+      flex-shrink: 0;
+      animation: cdpulse 1s ease-in-out infinite;
+    }
+
+    @keyframes cdpulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.2; }
+    }
+
+    .cd-time {
+      color: #ff4444;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      min-width: 46px;
+    }
+
+    /* Card */
+    .card {
+      background: #111922;
+      border: 1px solid #1e2d40;
+      color: #c8d4e8;
+    }
+
+    /* Form */
+    form {
+      background: #0d131e;
+      border: 1px solid #1e2d40;
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.9rem;
+    }
+
+    form h3 {
+      color: #7888aa;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin: 0 0 0.9rem;
+    }
+
+    label { color: #7888aa; font-size: 0.85rem; font-weight: 600; }
+
+    input {
+      background: #151e2c;
+      border: 1px solid #2a3a52;
+      color: #d0dced;
+    }
+
+    input::placeholder { color: #3a4a62; }
+
+    button[type="submit"] {
+      width: 100%;
+      background: #cc1111;
+      padding: 0.7rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      margin-top: 1rem;
+      border-radius: 6px;
+    }
+
+    button[type="submit"]:hover { background: #ee2222; }
+
+    .disclaimer {
+      font-size: 0.78rem;
+      color: #3a4a62;
+      margin-top: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .site-footer { border-top: 1px solid #1e2d40; color: #3a4a62; }
+    .site-footer a { color: #3a5a7a; }
+  </style>
 </head>
 <body>
+
   <header class="site-header">
     <div class="container">
-      <h1>Session Check</h1>
-      <p>Your active session appears unstable.</p>
+      <h1>&#128274; Account Security Center</h1>
+      <p>Unusual sign-in activity detected &mdash; immediate action required</p>
     </div>
   </header>
 
   <main class="container">
+    <p style="margin:0.8rem 0 0;"><span class="badge risky">RISKY</span></p>
+
+    <!-- Alert banner -->
+    <div class="alert-banner">
+      <div class="alert-icon">&#9888;</div>
+      <div>
+        <div class="alert-heading">SECURITY ALERT: Unauthorized Sign-In Attempt Detected</div>
+        <p class="alert-body">
+          We detected a login attempt from an unrecognized device and location. Your account
+          has been <strong style="color:#ff6666;">temporarily restricted</strong> to prevent
+          unauthorized access. Verify your identity below to restore full access immediately.
+        </p>
+      </div>
+    </div>
+
+    <!-- Activity log -->
     <section class="card">
-      <p><span class="badge risky">RISKY</span></p>
-      <p class="warning"><strong>Urgent:</strong> Session expires in 01:45. Verify now to prevent temporary lockout.</p>
-      <p>Complete this quick check to keep your session active on this device.</p>
-
-      <form id="session-form">
-        <label for="participant-tag">Participant Tag</label>
-        <input id="participant-tag" name="participant-tag" type="text" placeholder="Example: P-143" required>
-
-        <label for="zone-code">Seating Zone Code</label>
-        <input id="zone-code" name="zone-code" type="text" placeholder="Example: B7" required>
-
-        <button type="submit">Verify Session Now</button>
-      </form>
-      <p class="subtle">Research simulation page with client-side-only behavior.</p>
-      <p><a href="../index.html">Back to scenario hub</a></p>
+      <h2 style="color:#7888aa;font-size:0.87rem;text-transform:uppercase;letter-spacing:0.07em;margin-top:0;">
+        Recent Sign-In Activity
+      </h2>
+      <table class="activity-table">
+        <thead>
+          <tr><th>Date &amp; Time</th><th>Device</th><th>Location</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Apr 11 &nbsp;9:14 AM</td>
+            <td>Chrome / Windows</td>
+            <td>Recognized device</td>
+            <td class="status-ok">&#10003; Verified</td>
+          </tr>
+          <tr>
+            <td>Apr 12 &nbsp;3:02 AM</td>
+            <td>Mobile Safari</td>
+            <td>Recognized device</td>
+            <td class="status-ok">&#10003; Verified</td>
+          </tr>
+          <tr class="flagged">
+            <td>Apr 12 &nbsp;11:47 AM</td>
+            <td><strong>Unknown Device</strong></td>
+            <td><strong>Unrecognized location</strong></td>
+            <td class="status-flag">&#9888; BLOCKED</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.82rem;color:#5a6a82;margin:0.3rem 0 0;">
+        If you do not recognize the blocked attempt, verify your identity now to permanently
+        lock this device out of your account.
+      </p>
     </section>
+
+    <!-- Countdown + verification form -->
+    <section class="card" style="margin-top:0;">
+
+      <div class="countdown-strip">
+        <div class="cd-dot"></div>
+        <span>Account restriction lifts in</span>
+        <span class="cd-time" id="cd-display">14:59</span>
+        <span>— verify now to avoid lockout</span>
+      </div>
+
+      <form id="verify-form" autocomplete="off">
+        <h3>Verify Your Identity</h3>
+
+        <label for="acct-email">Account Email Address</label>
+        <input id="acct-email" name="acct-email" type="email"
+               placeholder="your@email.com" required>
+
+        <label for="acct-password">Account Password</label>
+        <input id="acct-password" name="acct-password" type="password"
+               placeholder="Enter your current password" required>
+
+        <label for="acct-phone">Phone Number on File</label>
+        <input id="acct-phone" name="acct-phone" type="tel"
+               placeholder="Used for identity confirmation">
+
+        <button type="submit">Verify &amp; Restore Account Access</button>
+      </form>
+
+      <p class="disclaimer">
+        By submitting this form you authorize our security team to review your sign-in records
+        and permanently revoke access from unrecognized devices. Your information is protected
+        under our Privacy Policy. For assistance contact
+        <span style="color:#3a4a62;text-decoration:underline;cursor:pointer;">
+          support@account-security-verify.net
+        </span>.
+      </p>
+
+      <p style="margin-top:1.1rem;"><a href="../index.html">&larr; Back to scenario hub</a></p>
+    </section>
+
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>Study page: risky-looking session prompt simulation.</p>
+      <p>Study page: risky-looking credential phishing simulation. No data is transmitted.</p>
     </div>
   </footer>
 
   <script>
-    document.getElementById("session-form").addEventListener("submit", function (event) {
-      event.preventDefault();
-      alert("Demo only: no session check is performed and no data is transmitted.");
+    // Countdown
+    var secs = 14 * 60 + 59;
+    var cdDisplay = document.getElementById("cd-display");
+    var interval = setInterval(function () {
+      secs--;
+      if (secs <= 0) { secs = 0; clearInterval(interval); }
+      var m = Math.floor(secs / 60), s = secs % 60;
+      cdDisplay.textContent =
+        (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+    }, 1000);
+
+    // Form intercept — client-side only, no data sent
+    document.getElementById("verify-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Demo only: no data is transmitted. This is a safe user-study simulation.");
     });
   </script>
+
 </body>
 </html>

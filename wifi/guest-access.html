@@ -4,45 +4,274 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Guest Wi-Fi Access</title>
+  <title>Guest Wi-Fi Access — Venue Network</title>
   <link rel="stylesheet" href="../styles.css">
+  <style>
+    :root {
+      --wi-teal:   #0d6e6e;
+      --wi-light:  #e6f4f4;
+      --wi-border: #b0d9d9;
+      --wi-muted:  #4a7070;
+    }
+
+    body {
+      background: linear-gradient(180deg, #edfafa 0%, #d8eeee 100%);
+    }
+
+    .site-header {
+      background: var(--wi-teal);
+      border-bottom: 3px solid #20a8a8;
+    }
+
+    .site-header h1 { color: #fff; }
+    .site-header p  { color: #a0d8d8; }
+
+    .card { background: #fff; border-color: var(--wi-border); }
+
+    /* Network credential card */
+    .network-card {
+      background: var(--wi-teal);
+      color: #fff;
+      border-radius: 12px;
+      padding: 1.4rem 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .network-card-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      opacity: 0.7;
+      margin-bottom: 0.3rem;
+    }
+
+    .network-name {
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.9rem;
+    }
+
+    .password-row {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 0.6rem 0.9rem;
+    }
+
+    .pw-label {
+      font-size: 0.78rem;
+      opacity: 0.7;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .pw-value {
+      font-family: "Courier New", monospace;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    /* Numbered steps */
+    .step-list {
+      list-style: none;
+      padding: 0;
+      counter-reset: step;
+      margin: 0.5rem 0 0;
+    }
+
+    .step-list li {
+      counter-increment: step;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--wi-border);
+      font-size: 0.92rem;
+    }
+
+    .step-list li:last-child { border-bottom: none; }
+
+    .step-list li::before {
+      content: counter(step);
+      background: var(--wi-teal);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.78rem;
+      min-width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Coverage grid */
+    .coverage-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+      margin-top: 0.8rem;
+    }
+
+    .coverage-zone {
+      background: var(--wi-light);
+      border: 1px solid var(--wi-border);
+      border-radius: 8px;
+      padding: 0.8rem;
+    }
+
+    .coverage-zone h3 {
+      margin: 0 0 0.3rem;
+      font-size: 0.9rem;
+      color: var(--wi-teal);
+    }
+
+    .coverage-zone p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--wi-muted);
+      line-height: 1.45;
+    }
+
+    .site-footer { border-top: 1px solid var(--wi-border); }
+
+    @media (max-width: 700px) {
+      .coverage-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
+
   <header class="site-header">
     <div class="container">
       <h1>Guest Wi-Fi Access</h1>
-      <p>Quick setup instructions for event visitors.</p>
+      <p>Venue wireless network &bull; Event visitors</p>
     </div>
   </header>
 
   <main class="container">
+
+    <p style="margin:0.8rem 0 0;"><span class="badge benign">BENIGN</span></p>
+
+    <!-- Network credential card -->
+    <div class="network-card">
+      <div class="network-card-label">Network Name</div>
+      <div class="network-name">Venue-Guest</div>
+      <div class="password-row">
+        <span class="pw-label">Password</span>
+        <span class="pw-value">Welcome2026</span>
+      </div>
+    </div>
+
+    <!-- Connection steps -->
     <section class="card">
-      <p><span class="badge benign">BENIGN</span></p>
-      <p class="notice"><strong>Network:</strong> `Venue-Guest` | <strong>Password:</strong> `Welcome2026`</p>
-      <h2>Connection Steps</h2>
-      <ol>
-        <li>Open your device Wi-Fi settings.</li>
-        <li>Select <strong>Venue-Guest</strong>.</li>
-        <li>Enter password <strong>Welcome2026</strong>.</li>
-        <li>Open a browser and accept the guest policy page.</li>
+      <h2>How to Connect</h2>
+      <ol class="step-list">
+        <li>
+          Open your device's <strong>Wi-Fi settings</strong>
+          (Settings &rarr; Wi-Fi, or swipe down to Control Center).
+        </li>
+        <li>
+          Select <strong>Venue-Guest</strong> from the list of nearby networks.
+        </li>
+        <li>
+          Enter the password <strong>Welcome2026</strong> and tap <em>Join</em>.
+        </li>
+        <li>
+          Open any browser. A <strong>Guest Policy page</strong> will appear — scroll to the
+          bottom and tap <strong>Accept &amp; Connect</strong> to activate internet access.
+        </li>
+        <li>
+          You're connected. The session stays active for the duration of the event;
+          no re-authentication is required unless you leave the venue.
+        </li>
       </ol>
+      <p class="subtle" style="font-size:0.85rem;margin-top:0.8rem;">
+        If the policy page doesn't appear automatically, navigate to any
+        <code>http://</code> (non-HTTPS) address to trigger the captive portal.
+      </p>
     </section>
 
+    <!-- Coverage areas -->
+    <section class="card">
+      <h2>Coverage Areas</h2>
+      <div class="coverage-grid">
+        <div class="coverage-zone">
+          <h3>Main Hall (Level 1)</h3>
+          <p>Full coverage — stage, seating, and exhibit floor.</p>
+        </div>
+        <div class="coverage-zone">
+          <h3>Lobby &amp; Atrium</h3>
+          <p>Strong signal at entry, registration desk, and near elevators.</p>
+        </div>
+        <div class="coverage-zone">
+          <h3>Breakout Rooms (Level 2)</h3>
+          <p>Individual access points in rooms B201 – B214. May require a one-time re-authentication.</p>
+        </div>
+        <div class="coverage-zone">
+          <h3>Courtyard</h3>
+          <p>Partial outdoor coverage. Best within 30 ft of the building exterior.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guest policy -->
+    <section class="card">
+      <h2>Guest Network Policy</h2>
+      <ul>
+        <li>Provided for general browsing and event-related use.</li>
+        <li>Avoid large media downloads — bandwidth is shared among all attendees.</li>
+        <li>Do not attempt to access other devices connected to the same network.</li>
+        <li>Traffic is monitored for capacity management only; no personal data is logged.</li>
+      </ul>
+    </section>
+
+    <!-- Troubleshooting -->
     <section class="card">
       <h2>Troubleshooting</h2>
-      <ul>
-        <li>If the policy page does not appear, reconnect and retry.</li>
-        <li>Move closer to hall access points if signal is weak.</li>
-        <li>Visit the help desk in Lobby C for device assistance.</li>
-      </ul>
-      <p><a href="../index.html">Back to scenario hub</a></p>
+      <table>
+        <thead>
+          <tr><th>Problem</th><th>Solution</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Policy page never appears</td>
+            <td>Disconnect, reconnect, then open an <code>http://</code> URL (not HTTPS) to trigger the portal.</td>
+          </tr>
+          <tr>
+            <td>Password rejected</td>
+            <td>Confirm you selected <em>Venue-Guest</em> (not a similarly named network) and re-type the password exactly.</td>
+          </tr>
+          <tr>
+            <td>Weak signal in a breakout room</td>
+            <td>Move near the access point mounted above the door frame, or ask staff to check the room repeater.</td>
+          </tr>
+          <tr>
+            <td>Connected but no internet</td>
+            <td>The policy acceptance step may have timed out. Forget the network and start the connection from scratch.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:0.9rem;">
+        For hands-on help, visit the <strong>AV &amp; Tech Desk</strong> in Lobby C,
+        open <strong>8:00 AM – 6:00 PM</strong>.
+      </p>
+      <p style="margin-top:0.5rem;"><a href="../index.html">&larr; Back to scenario hub</a></p>
     </section>
+
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>Study page: benign Wi-Fi instructions.</p>
+      <p>Study page: benign Wi-Fi instructions. &nbsp;|&nbsp; No external integrations.</p>
     </div>
   </footer>
+
 </body>
 </html>

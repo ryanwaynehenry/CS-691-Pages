@@ -4,76 +4,255 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Conference Center Parking</title>
+  <title>Riverside Conference Center — Parking Guide</title>
   <link rel="stylesheet" href="../styles.css">
+  <style>
+    :root {
+      --cc-blue:   #1a3a5c;
+      --cc-steel:  #3a5878;
+      --cc-light:  #e8f0f8;
+      --cc-border: #c5d5e8;
+      --cc-muted:  #5a7090;
+    }
+
+    body {
+      background: linear-gradient(180deg, #edf2f9 0%, #dfe8f5 100%);
+    }
+
+    .site-header {
+      background: var(--cc-blue);
+      border-bottom: 3px solid #4a90c8;
+    }
+
+    .site-header h1 { color: #fff; }
+    .site-header p  { color: #a8c4e0; }
+
+    .card {
+      background: #fff;
+      border-color: var(--cc-border);
+    }
+
+    /* Garage level cards */
+    .level-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+      margin-top: 0.9rem;
+    }
+
+    .level-card {
+      background: var(--cc-light);
+      border: 1px solid var(--cc-border);
+      border-radius: 8px;
+      padding: 0.9rem;
+      text-align: center;
+    }
+
+    .level-card h3 {
+      margin: 0 0 0.4rem;
+      color: var(--cc-blue);
+      font-size: 1rem;
+    }
+
+    .level-card p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--cc-muted);
+      line-height: 1.5;
+    }
+
+    .status-open {
+      display: inline-block;
+      background: #d4edda;
+      color: #155724;
+      font-size: 0.72rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: 4px;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* Numbered pay steps */
+    .pay-steps {
+      list-style: none;
+      padding: 0;
+      counter-reset: step;
+      margin: 0.6rem 0 0;
+    }
+
+    .pay-steps li {
+      counter-increment: step;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--cc-border);
+      font-size: 0.92rem;
+    }
+
+    .pay-steps li:last-child { border-bottom: none; }
+
+    .pay-steps li::before {
+      content: counter(step);
+      background: var(--cc-blue);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.78rem;
+      min-width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .validation-box {
+      background: var(--cc-light);
+      border: 1px solid var(--cc-border);
+      border-left: 4px solid var(--cc-blue);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      margin-top: 0.9rem;
+      font-size: 0.9rem;
+    }
+
+    .site-footer { border-top: 1px solid var(--cc-border); }
+
+    @media (max-width: 700px) {
+      .level-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
+
   <header class="site-header">
     <div class="container">
-      <h1>Conference Center Parking Guide</h1>
-      <p>Lot access, rates, and entry directions.</p>
+      <h1>Riverside Conference Center</h1>
+      <p>Parking Guide &bull; Lot access &bull; Rates &bull; Pay station info</p>
     </div>
   </header>
 
   <main class="container">
+
+    <p style="margin:0.8rem 0 0;"><span class="badge benign">BENIGN</span></p>
+
+    <div class="notice" style="margin-top:0.9rem;">
+      <strong>Event Parking:</strong> All garages open 7:00 AM – 11:00 PM today.
+      Overflow Lot C available for evening events after 5:30 PM.
+    </div>
+
+    <!-- Garage levels -->
+    <section class="card" style="margin-top:1rem;">
+      <h2>Garage Levels &amp; Availability</h2>
+      <div class="level-grid">
+        <div class="level-card">
+          <div class="status-open">OPEN</div>
+          <h3>Level 1</h3>
+          <p>General visitor parking<br>ADA bays A12 – A18<br>268 spaces total</p>
+        </div>
+        <div class="level-card">
+          <div class="status-open">OPEN</div>
+          <h3>Level 2</h3>
+          <p>Conference attendee<br>Elevator access near C03<br>312 spaces total</p>
+        </div>
+        <div class="level-card">
+          <div class="status-open">OPEN</div>
+          <h3>Level 3</h3>
+          <p>Reserved / permit holders<br>Monthly pass required<br>180 spaces total</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rates -->
     <section class="card">
-      <p><span class="badge benign">BENIGN</span></p>
+      <h2>Parking Rates</h2>
+      <table>
+        <thead>
+          <tr><th>Duration</th><th>Rate</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>First 30 min</td>
+            <td>Free</td>
+            <td>Grace period for drop-off and pick-up</td>
+          </tr>
+          <tr>
+            <td>30 min – 2 hrs</td>
+            <td>$5</td>
+            <td>Standard daytime rate</td>
+          </tr>
+          <tr>
+            <td>2 – 6 hrs</td>
+            <td>$12</td>
+            <td>Conference attendee rate (with validation)</td>
+          </tr>
+          <tr>
+            <td>6+ hrs</td>
+            <td>$18 flat</td>
+            <td>Daily maximum cap</td>
+          </tr>
+          <tr>
+            <td>Evening (after 5:30 PM)</td>
+            <td>$6 flat</td>
+            <td>Event parking; exit by 11:00 PM</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Pay station steps -->
+    <section class="card">
+      <h2>How to Pay</h2>
+      <p class="subtle">Pay stations are located at each garage exit lane and beside the stairwells on every level.</p>
+      <ol class="pay-steps">
+        <li>Locate a <strong>blue pay kiosk</strong> before returning to your vehicle.</li>
+        <li>Scan the barcode on your entry ticket, or type in your license plate number.</li>
+        <li>Review the calculated fee shown on the display screen.</li>
+        <li>Pay by credit / debit card or contactless tap. <em>Cash is not accepted.</em></li>
+        <li>Collect your exit receipt. You have <strong>15 minutes</strong> to reach the exit gate after payment.</li>
+      </ol>
+      <div class="validation-box">
+        <strong>Conference Validation:</strong> Get your parking ticket stamped at the
+        <strong>Registration Desk</strong> in Main Lobby (Level 1) to receive the discounted attendee rate.
+        Validation is available during all scheduled sessions.
+      </div>
+    </section>
+
+    <!-- Entry + accessibility -->
+    <section class="card">
       <div class="grid-2">
         <div>
           <h2>Entry Points</h2>
           <ul>
-            <li>North Gate: badge or QR code scan</li>
-            <li>West Garage: visitor kiosk check-in</li>
-            <li>South Overflow Lot: event-only parking</li>
+            <li><strong>North Gate</strong> — badge or QR code scan</li>
+            <li><strong>West Garage</strong> — visitor kiosk check-in</li>
+            <li><strong>South Overflow Lot C</strong> — event-only access</li>
+            <li><strong>Main Lobby Drop-Off Lane</strong> — 10-minute maximum</li>
           </ul>
         </div>
         <div>
           <h2>Accessibility</h2>
           <ul>
-            <li>ADA spaces available on Level 1 and Level 2</li>
+            <li>ADA spaces on Level 1 (bays A12 – A18) and Level 2</li>
             <li>Elevator access near bays A12 and C03</li>
-            <li>Drop-off lane at Main Lobby entrance</li>
+            <li>Accessible drop-off at Main Lobby entrance</li>
+            <li>Mobility assistance: call <strong>ext. 4400</strong> from any lobby phone</li>
           </ul>
         </div>
       </div>
+      <p style="margin-top:0.9rem;"><a href="../index.html">&larr; Back to scenario hub</a></p>
     </section>
 
-    <section class="card">
-      <h2>Parking Rates</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Duration</th>
-            <th>Rate</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>0-2 hours</td>
-            <td>$5</td>
-            <td>Standard daytime rate</td>
-          </tr>
-          <tr>
-            <td>2-6 hours</td>
-            <td>$12</td>
-            <td>Conference attendee rate</td>
-          </tr>
-          <tr>
-            <td>6+ hours</td>
-            <td>$18 max</td>
-            <td>Flat daily cap</td>
-          </tr>
-        </tbody>
-      </table>
-      <p><a href="../index.html">Back to scenario hub</a></p>
-    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>Study page: benign parking information.</p>
+      <p>Study page: benign parking information. &nbsp;|&nbsp; No external integrations.</p>
     </div>
   </footer>
+
 </body>
 </html>

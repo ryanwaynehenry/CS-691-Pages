@@ -4,45 +4,258 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Short-Link Preview</title>
+  <title>LinkSafe Preview — Destination Check</title>
   <link rel="stylesheet" href="../styles.css">
+  <style>
+    body {
+      background: linear-gradient(180deg, #f4f7f2 0%, #eaefe6 100%);
+    }
+
+    .site-header {
+      background: #1e3a28;
+      border-bottom: 3px solid #3a8050;
+    }
+
+    .site-header h1 { color: #fff; font-size: 1.25rem; }
+    .site-header p  { color: #90b898; }
+
+    .card { background: #fff; border-color: #c8dac0; }
+
+    /* URL display rows */
+    .url-row {
+      background: #f0f8f0;
+      border: 1px solid #b0d0a8;
+      border-radius: 8px;
+      padding: 0.65rem 0.9rem;
+      font-family: "Courier New", monospace;
+      font-size: 0.85rem;
+      margin: 0.6rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+      word-break: break-all;
+    }
+
+    .url-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #6a907a;
+      white-space: nowrap;
+      padding-top: 0.05rem;
+    }
+
+    .url-value { color: #1a3020; }
+
+    /* The suspicious destination — styled to look subtle but off */
+    .url-destination { color: #7a4010; font-weight: 600; }
+
+    /* Safety check list */
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.7rem 0 0;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid #dce8d8;
+      font-size: 0.88rem;
+      color: #2a3a28;
+    }
+
+    .check-list li:last-child { border-bottom: none; }
+
+    .ck {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .ck.pass { background: #d4f0d4; color: #1a6020; border: 1px solid #70c070; }
+    .ck.warn { background: #fff8d4; color: #9a7020; border: 1px solid #d0a840; }
+
+    /* Domain caution box */
+    .domain-caution {
+      background: #fffce4;
+      border: 1px solid #ddd060;
+      border-left: 4px solid #b8a010;
+      border-radius: 6px;
+      padding: 0.75rem 0.9rem;
+      margin: 0.8rem 0;
+      font-size: 0.85rem;
+      color: #504010;
+      line-height: 1.55;
+    }
+
+    /* Redirect countdown bar */
+    .redirect-bar {
+      background: #1e3a28;
+      color: #a8d0b0;
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      margin: 0.9rem 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .rd-label  { font-size: 0.78rem; opacity: 0.7; }
+    .rd-count  { font-size: 1.25rem; font-weight: 700; color: #fff; }
+
+    .rd-cancel {
+      background: rgba(255,255,255,0.1);
+      color: #c0e8c0;
+      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 0.82rem;
+      padding: 0.38rem 0.75rem;
+      border-radius: 6px;
+      margin-top: 0;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .rd-cancel:hover { background: rgba(255,255,255,0.2); }
+
+    .rd-proceed {
+      background: #3a8050;
+      color: #fff;
+      border: 1px solid #50a870;
+      font-size: 0.82rem;
+      padding: 0.38rem 0.75rem;
+      border-radius: 6px;
+      margin-top: 0;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .rd-proceed:hover { background: #4a9860; }
+
+    .site-footer { border-top: 1px solid #c8dac0; }
+  </style>
 </head>
 <body>
+
   <header class="site-header">
     <div class="container">
-      <h1>Destination Preview</h1>
-      <p>This short link may lead to an unlisted endpoint.</p>
+      <h1>LinkSafe Preview</h1>
+      <p>Destination analysis before you proceed</p>
     </div>
   </header>
 
   <main class="container">
-    <section class="card">
-      <p><span class="badge risky">RISKY</span></p>
-      <p class="warning"><strong>Notice:</strong> The destination is currently masked. Continue only if you trust this source.</p>
-      <p><strong>Short code:</strong> `go.local/x7p`</p>
-      <p><strong>Resolved destination:</strong> <code id="resolved-target">[hidden]</code></p>
 
-      <button id="reveal-btn" type="button">Reveal Destination</button>
-      <button id="continue-btn" type="button">Continue to Destination</button>
-      <p class="subtle">Research simulation page with client-side-only behavior.</p>
-      <p><a href="../index.html">Back to scenario hub</a></p>
+    <p style="margin:0.8rem 0 0;"><span class="badge risky">RISKY</span></p>
+
+    <!-- Link origin -->
+    <section class="card" style="margin-top:1rem;">
+      <h2>Link Origin</h2>
+
+      <div class="url-row">
+        <span class="url-tag">Short&nbsp;link</span>
+        <span class="url-value">go.local/x7p</span>
+      </div>
+
+      <div class="url-row">
+        <span class="url-tag">Resolves&nbsp;to</span>
+        <span class="url-destination">secure-verify.venue-accounts-helpdesk.net/login/check</span>
+      </div>
+
+      <div class="domain-caution">
+        <strong>Domain note:</strong> The destination domain
+        <code>venue-accounts-helpdesk.net</code> was registered
+        <strong>11 days ago</strong> and is not affiliated with this venue's official website.
+        The registrant's identity is hidden behind a privacy proxy.
+        Proceed only if you are confident you know who sent this link.
+      </div>
     </section>
+
+    <!-- Safety checks -->
+    <section class="card">
+      <h2>Automated Safety Checks</h2>
+      <ul class="check-list">
+        <li><div class="ck pass">&#10003;</div> No known malware signatures detected</li>
+        <li><div class="ck pass">&#10003;</div> HTTPS certificate present (self-signed)</li>
+        <li><div class="ck pass">&#10003;</div> Page content scan completed</li>
+        <li><div class="ck warn">&#9888;</div> Domain age: 11 days — newly registered</li>
+        <li><div class="ck warn">&#9888;</div> Registrant: hidden (privacy-protected proxy)</li>
+        <li><div class="ck warn">&#9888;</div> Domain pattern matches known lookalike structure</li>
+      </ul>
+      <p class="subtle" style="font-size:0.82rem;margin-top:0.5rem;">
+        Automated checks are not a guarantee of safety. Use your own judgment when visiting
+        an unfamiliar domain.
+      </p>
+    </section>
+
+    <!-- Redirect countdown -->
+    <section class="card">
+      <h2>Proceed to Destination</h2>
+      <p style="font-size:0.88rem;color:#3a5038;margin:0 0 0.2rem;">
+        You will be redirected automatically unless you cancel.
+      </p>
+
+      <div class="redirect-bar">
+        <div>
+          <div class="rd-label">Redirecting in</div>
+          <div class="rd-count"><span id="cd-num">8</span> sec</div>
+        </div>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <button class="rd-cancel" id="cancel-btn">Cancel</button>
+          <button class="rd-proceed" id="proceed-btn">Proceed Now</button>
+        </div>
+      </div>
+
+      <p style="margin-top:1rem;"><a href="../index.html">&larr; Back to scenario hub</a></p>
+    </section>
+
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>Study page: risky-looking redirect simulation.</p>
+      <p>Study page: risky-looking redirect simulation. No redirect occurs.</p>
     </div>
   </footer>
 
   <script>
-    document.getElementById("reveal-btn").addEventListener("click", function () {
-      document.getElementById("resolved-target").textContent = "/internal/preview/destination-simulation";
+    var count     = 8;
+    var cdEl      = document.getElementById("cd-num");
+    var cancelled = false;
+    var iv = setInterval(function () {
+      if (cancelled) return;
+      count--;
+      cdEl.textContent = count;
+      if (count <= 0) {
+        clearInterval(iv);
+        alert("Demo only: no redirect occurs. This is a safe user-study simulation.");
+      }
+    }, 1000);
+
+    document.getElementById("cancel-btn").addEventListener("click", function () {
+      cancelled = true;
+      clearInterval(iv);
+      cdEl.textContent = "\u2014";
+      this.textContent = "Cancelled";
+      this.disabled = true;
     });
 
-    document.getElementById("continue-btn").addEventListener("click", function () {
-      alert("Demo only: no redirect occurs. This page is an inert simulation.");
+    document.getElementById("proceed-btn").addEventListener("click", function () {
+      cancelled = true;
+      clearInterval(iv);
+      alert("Demo only: no redirect occurs. This is a safe user-study simulation.");
     });
   </script>
+
 </body>
 </html>

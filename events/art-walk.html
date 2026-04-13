@@ -4,69 +4,319 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Art Walk Schedule</title>
+  <title>Downtown Art Walk — Schedule &amp; Guide</title>
   <link rel="stylesheet" href="../styles.css">
+  <style>
+    :root {
+      --art-dark:   #1a1423;
+      --art-purple: #6b4fa8;
+      --art-gold:   #c89830;
+      --art-cream:  #f9f5ee;
+      --art-border: #d8cfe8;
+      --art-muted:  #6858a0;
+    }
+
+    body {
+      background: linear-gradient(180deg, #f3eff9 0%, #e8e2f4 100%);
+      color: var(--art-dark);
+    }
+
+    .site-header {
+      background: var(--art-dark);
+      border-bottom: 3px solid var(--art-gold);
+    }
+
+    .site-header h1 {
+      color: #fff;
+      letter-spacing: 0.03em;
+    }
+
+    .site-header p { color: #c0b0e0; }
+
+    .card { background: #fff; border-color: var(--art-border); }
+
+    /* Route timeline */
+    .route-timeline {
+      position: relative;
+      padding-left: 2.2rem;
+      margin-top: 0.8rem;
+    }
+
+    .route-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0.65rem;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--art-border);
+    }
+
+    .route-stop {
+      position: relative;
+      padding: 0.7rem 0 0.7rem 0.4rem;
+      border-bottom: 1px solid var(--art-border);
+    }
+
+    .route-stop:last-child { border-bottom: none; }
+
+    .route-stop::before {
+      content: '';
+      position: absolute;
+      left: -1.87rem;
+      top: 1rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--art-purple);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px var(--art-purple);
+    }
+
+    .stop-time {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--art-gold);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .stop-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--art-dark);
+      margin: 0.15rem 0 0.1rem;
+    }
+
+    .stop-location {
+      font-size: 0.83rem;
+      color: var(--art-muted);
+    }
+
+    .stop-desc {
+      font-size: 0.88rem;
+      color: #444;
+      margin-top: 0.35rem;
+      line-height: 1.55;
+    }
+
+    /* Artist cards */
+    .artist-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 0.9rem;
+    }
+
+    .artist-card {
+      background: var(--art-cream);
+      border: 1px solid var(--art-border);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .artist-initial {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--art-purple);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .artist-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--art-dark);
+    }
+
+    .artist-medium {
+      font-size: 0.76rem;
+      color: var(--art-gold);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin: 0.1rem 0 0.4rem;
+    }
+
+    .artist-bio {
+      font-size: 0.83rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .site-footer { border-top: 1px solid var(--art-border); }
+
+    @media (max-width: 700px) {
+      .artist-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
+
   <header class="site-header">
     <div class="container">
       <h1>Downtown Art Walk</h1>
-      <p>Route details and timed activity schedule.</p>
+      <p>Self-guided route &bull; Live demonstrations &bull; Artist meet &amp; greet</p>
     </div>
   </header>
 
   <main class="container">
-    <section class="card">
-      <p><span class="badge benign">BENIGN</span></p>
-      <p class="notice"><strong>Date:</strong> Saturday, April 18 | <strong>Check-in:</strong> Central Plaza</p>
-      <table>
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th>Location</th>
-            <th>Activity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>10:00 AM</td>
-            <td>Central Plaza</td>
-            <td>Welcome and route briefing</td>
-          </tr>
-          <tr>
-            <td>11:00 AM</td>
-            <td>Riverfront Gallery</td>
-            <td>Guided exhibit walk-through</td>
-          </tr>
-          <tr>
-            <td>12:30 PM</td>
-            <td>Maple Alley</td>
-            <td>Live mural demonstration</td>
-          </tr>
-          <tr>
-            <td>2:00 PM</td>
-            <td>Studio Hall</td>
-            <td>Artist Q&A session</td>
-          </tr>
-        </tbody>
-      </table>
+
+    <p style="margin:0.8rem 0 0;"><span class="badge benign">BENIGN</span></p>
+
+    <div class="notice" style="margin-top:0.9rem;">
+      <strong>Date:</strong> Saturday, April 18 &nbsp;&bull;&nbsp;
+      <strong>Check-in opens:</strong> 9:30 AM at Central Plaza &nbsp;&bull;&nbsp;
+      <strong>Free admission</strong>
+    </div>
+
+    <!-- Route timeline -->
+    <section class="card" style="margin-top:1rem;">
+      <h2>Route &amp; Schedule</h2>
+      <div class="route-timeline">
+
+        <div class="route-stop">
+          <div class="stop-time">9:30 AM</div>
+          <div class="stop-name">Check-In &amp; Welcome</div>
+          <div class="stop-location">Central Plaza — Main Fountain</div>
+          <div class="stop-desc">
+            Collect your wristband and printed route map. Staff will give a brief orientation,
+            highlight accessible routing options, and note any weather changes to the outdoor segments.
+          </div>
+        </div>
+
+        <div class="route-stop">
+          <div class="stop-time">10:00 AM</div>
+          <div class="stop-name">Guided Exhibit Walk-Through</div>
+          <div class="stop-location">Riverfront Gallery — 14 Harbor Blvd</div>
+          <div class="stop-desc">
+            45-minute docent-led tour of the <em>Urban Rhythm</em> exhibition — 30 works
+            exploring city life through mixed media, documentary photography, and sculptural
+            installation. Arrive any time between 10:00 and 11:00 AM; tours depart every 15 minutes.
+          </div>
+        </div>
+
+        <div class="route-stop">
+          <div class="stop-time">11:15 AM</div>
+          <div class="stop-name">Open Studio Visits</div>
+          <div class="stop-location">Foundry Building — 8 Mill Street, Studios 2 &amp; 5</div>
+          <div class="stop-desc">
+            Watch two working artists mid-process and ask them questions directly.
+            No ticketing required — walk in at any point during the 11:15 – 12:15 PM window.
+          </div>
+        </div>
+
+        <div class="route-stop">
+          <div class="stop-time">12:30 PM</div>
+          <div class="stop-name">Live Mural Demonstration</div>
+          <div class="stop-location">Maple Alley — off Grove Street</div>
+          <div class="stop-desc">
+            Mural artist Dara Santos continues work on a new 20-foot commission in real time.
+            Watch from the marked viewing area and chat with the artist during breaks.
+            Expected duration: approximately 90 minutes.
+          </div>
+        </div>
+
+        <div class="route-stop">
+          <div class="stop-time">2:00 PM</div>
+          <div class="stop-name">Artist Q&amp;A Panel</div>
+          <div class="stop-location">Studio Hall — 3rd Floor, Room 301</div>
+          <div class="stop-desc">
+            Three featured artists discuss their practice, this year's theme, and how public art
+            shapes neighborhood identity. Moderated Q&amp;A follows the presentations.
+            Seating is limited; arrive a few minutes early.
+          </div>
+        </div>
+
+        <div class="route-stop">
+          <div class="stop-time">3:30 PM</div>
+          <div class="stop-name">Closing Reception</div>
+          <div class="stop-location">Central Plaza — Covered Pavilion</div>
+          <div class="stop-desc">
+            Light refreshments provided. Browse a small outdoor market of artist prints and
+            handmade goods. Extra route maps available for self-guided return visits throughout the week.
+          </div>
+        </div>
+
+      </div>
     </section>
 
+    <!-- Featured artists -->
     <section class="card">
-      <h2>Attendee Notes</h2>
-      <ul>
-        <li>Wear comfortable shoes for walking between locations.</li>
-        <li>Check route signs posted along each block.</li>
-        <li>Bring water and sun protection for outdoor segments.</li>
-      </ul>
-      <p><a href="../index.html">Back to scenario hub</a></p>
+      <h2>Featured Artists</h2>
+      <div class="artist-grid">
+
+        <div class="artist-card">
+          <div class="artist-initial">DS</div>
+          <div class="artist-name">Dara Santos</div>
+          <div class="artist-medium">Mural / Large-Scale</div>
+          <p class="artist-bio">
+            Known for layered street murals that map neighborhood histories through color fields
+            and found imagery. This is Dara's third consecutive year in the Art Walk.
+          </p>
+        </div>
+
+        <div class="artist-card">
+          <div class="artist-initial">RK</div>
+          <div class="artist-name">Remy Kowalczyk</div>
+          <div class="artist-medium">Photography / Mixed Media</div>
+          <p class="artist-bio">
+            Documentary photographer whose <em>Urban Rhythm</em> series examines transit workers
+            and the overlooked labor of keeping a city running.
+          </p>
+        </div>
+
+        <div class="artist-card">
+          <div class="artist-initial">TN</div>
+          <div class="artist-name">Taryn Nguyen</div>
+          <div class="artist-medium">Sculpture / Installation</div>
+          <p class="artist-bio">
+            Creates site-responsive installations from reclaimed materials. This year's piece,
+            <em>Threshold</em>, occupies the Riverfront Gallery entrance hall.
+          </p>
+        </div>
+
+      </div>
     </section>
+
+    <!-- Practical info -->
+    <section class="card">
+      <div class="grid-2">
+        <div>
+          <h2>What to Bring</h2>
+          <ul>
+            <li>Comfortable shoes — approx. 1.5-mile total walking route</li>
+            <li>Water bottle (refill stations at Plaza and Gallery)</li>
+            <li>Sun protection for the Maple Alley outdoor segment</li>
+            <li>Camera or phone (flash off inside gallery spaces)</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Practical Notes</h2>
+          <ul>
+            <li>Route signs posted with a teal arrow at each corner</li>
+            <li>Accessible routing available — ask a greeter for the Level A map</li>
+            <li>Free bike parking at Central Plaza and outside the Foundry Building</li>
+            <li>Rain plan: indoor-only route available if weather requires it</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:0.9rem;"><a href="../index.html">&larr; Back to scenario hub</a></p>
+    </section>
+
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>Study page: benign event schedule.</p>
+      <p>Study page: benign event schedule. &nbsp;|&nbsp; No external integrations.</p>
     </div>
   </footer>
+
 </body>
 </html>
